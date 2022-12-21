@@ -1,5 +1,4 @@
 import 'package:admin/responsive.dart';
-import 'package:admin/screens/dashboard/components/my_fields.dart';
 import 'package:admin/screens/dashboard/components/itemTable.dart';
 import 'package:admin/shared/ui.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +28,11 @@ class DashboardScreen extends StatelessWidget {
                       // MyFiles(),
                       SizedBox(height: defaultPadding),
                       UIHelper.verticalSpaceMedium(),
-                      LazadaItems(list: [],),
-                      if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+                      LazadaItems(
+                        list: [],
+                      ),
+                      if (Responsive.isMobile(context))
+                        SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context)) StarageDetails(),
                     ],
                   ),

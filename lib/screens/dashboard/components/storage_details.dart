@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
-import 'chart.dart';
 import 'storage_info_card.dart';
 
 class StarageDetails extends StatelessWidget {
@@ -28,7 +27,6 @@ class StarageDetails extends StatelessWidget {
             ),
           ),
           SizedBox(height: defaultPadding),
-
           StorageInfoCard(
             svgSrc: "assets/images/lazada.png",
             title: "Lazada",

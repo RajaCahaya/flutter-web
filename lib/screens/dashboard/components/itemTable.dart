@@ -1,15 +1,11 @@
 import 'dart:convert';
-import 'package:admin/controllers/AuthProvider.dart';
-import 'package:admin/models/RecentFile.dart';
 import 'package:data_table_2/data_table_2.dart';
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../../constants.dart';
 import '../../../models/item.dart';
-import '../../../responsive.dart';
-import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class LazadaItems extends StatefulWidget {
   List<Item> list = [];
 
@@ -47,10 +43,8 @@ class _LazadaItemsState extends State<LazadaItems> {
                     "Blog Posts",
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
-                
                 ],
               ),
-            
             ],
           ),
           // if list is empty, just create an empty container
@@ -63,39 +57,39 @@ class _LazadaItemsState extends State<LazadaItems> {
             ),
             // child: fromDate.text.isEmpty ? SingleChildScrollView() : SizedBox(
             child: SizedBox(
-                height: 350,
-                width: double.infinity,
-                child: PaginatedDataTable2(
-                  source: _itemdata,
-                  columnSpacing: 5,
-                  horizontalMargin: 5,
-                  rowsPerPage: 10,
-                  columns: <DataColumn>[
-                    DataColumn(
-                      label: Text("User ID"),
-                    ),
-                    DataColumn(
-                      label: Text("Id"),
-                    ),
-                    DataColumn(
-                      label: Text("Title"),
-                    ),
-                    DataColumn(
-                      label: Text("Body"),
-                    ),
-                    // DataColumn(
-                    //   label: Text("Order Item ID"),
-                    // ),
-                    // DataColumn(
-                    //   label: Text("SKU"),
-                    // ),
-                    // DataColumn(
-                    //   label: Text("Country"),
-                    // ),
-                  ],
-                ),
+              height: 350,
+              width: double.infinity,
+              child: PaginatedDataTable2(
+                source: _itemdata,
+                columnSpacing: 5,
+                horizontalMargin: 5,
+                rowsPerPage: 10,
+                columns: <DataColumn>[
+                  DataColumn(
+                    label: Text("User ID"),
+                  ),
+                  DataColumn(
+                    label: Text("Id"),
+                  ),
+                  DataColumn(
+                    label: Text("Title"),
+                  ),
+                  DataColumn(
+                    label: Text("Body"),
+                  ),
+                  // DataColumn(
+                  //   label: Text("Order Item ID"),
+                  // ),
+                  // DataColumn(
+                  //   label: Text("SKU"),
+                  // ),
+                  // DataColumn(
+                  //   label: Text("Country"),
+                  // ),
+                ],
               ),
             ),
+          ),
         ],
       ),
     );
