@@ -9,6 +9,7 @@ import '../../../models/item.dart';
 class LazadaItems extends StatefulWidget {
   List<Item> list = [];
 
+
   LazadaItems({Key? key, required List<Item> list}) : super(key: key);
 
   @override
@@ -19,10 +20,11 @@ class _LazadaItemsState extends State<LazadaItems> {
   ItemData _itemdata = new ItemData([]);
 
   @override
-  void initState() {
-    getData();
+  void initState()  {
+
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,14 @@ class _LazadaItemsState extends State<LazadaItems> {
                   ),
                 ],
               ),
+
+              ElevatedButton(onPressed: () async{
+                final list =
+                await getData();
+                setState(() {
+                  _itemdata = ItemData(list);
+                });
+              }, child: Container())
             ],
           ),
           // if list is empty, just create an empty container
@@ -55,6 +65,7 @@ class _LazadaItemsState extends State<LazadaItems> {
               cardColor: secondaryColor,
               dividerColor: Color(0xff333333),
             ),
+
             // child: fromDate.text.isEmpty ? SingleChildScrollView() : SizedBox(
             child: SizedBox(
               height: 350,
@@ -102,9 +113,10 @@ class ItemData extends DataTableSource {
 
   @override
   DataRow? getRow(int index) {
+
     return DataRow.byIndex(index: index, cells: [
-      // DataCell(Text(_data[index].userId.toString())),
-      // DataCell(Text(_data[index].id.toString())),
+      DataCell(Text(_data[index].userId.toString())),
+      DataCell(Text(_data[index].id.toString())),
       DataCell(Text(_data[index].title.toString())),
       DataCell(Text(_data[index].body.toString())),
     ]);
@@ -132,15 +144,18 @@ Future<List<Item>> getData() async {
     var response = await http.get(uri);
     print("response:" + "${response.statusCode}");
 
-    final respBody = json.decode(response.body);
 
+final respBody = json.decode(response.body);
     // parse only for data part
-    if (respBody['message'] == 'success') {
-      final List<dynamic> data = respBody['data'];
-      print("data:" + data.toString().substring(0, 20) + "...");
+    if (response.statusCode == 200) {
+      final List<dynamic> data = respBody;
+      list =List<Item>.from(data.map((x) => Item.fromJson(x)));
+
+
 
       // parse json array into an array of 'Item'
-      list = List<Item>.from(data.map((x) => Item.fromJson(x)));
+
+
     }
   } catch (error) {
     print(error);
